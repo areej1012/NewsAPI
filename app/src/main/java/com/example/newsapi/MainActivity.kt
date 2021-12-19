@@ -3,6 +3,7 @@ package com.example.newsapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapi.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val toolbar = binding.toolbar as Toolbar
+        setSupportActionBar(toolbar)
         listNews = arrayListOf()
         adpter = RecycleViewAdpter(listNews , this)
         binding.rv.adapter = adpter

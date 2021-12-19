@@ -1,5 +1,7 @@
 package com.example.newsapi
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.newsapi.databinding.ActivityDetailedInfoBinding
@@ -17,10 +19,14 @@ class DetailedInfo : AppCompatActivity() {
         binding.tvTitle.text = new?.title
         binding.tvDate.text = new?.date
         binding.tvDec.text = new?.description
-        binding.tvFullNew.text = "The scourse of new ${new?.link}"
         Picasso.with(this)
             .load(new?.image)
             .into(binding.imageView)
+        binding.tvFullNew.setOnClickListener {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse(new?.link)
+            startActivity(openURL)
+        }
 
     }
 }
